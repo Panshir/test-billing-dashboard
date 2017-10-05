@@ -3,7 +3,7 @@ FROM python:2.7
 #(commande original)
 #ENV BXVERSION=0.4.6_amd64 BXREPORT_HOME=/opt/bluemix-report 
 ENV BXREPORT_HOME=/opt/bluemix-report
-ENV BINDING=/opt/service-bind/binding
+#ENV BINDING=/opt/service-bind/binding
 
 
 RUN wget -q -O - https://packages.cloudfoundry.org/debian/cli.cloudfoundry.org.key | apt-key add - &&\
@@ -43,8 +43,8 @@ RUN grep -q '^password.*required' /etc/pam.d/common-password && sed -i 's/^passw
 
 # Address a current vulnerability in public node image by removing offending package
 #RUN dpkg --purge --force-all libgcrypt20 
-RUN dpkg --purge --force-all git
-RUN dpkg --purge --force-all perl 
+#RUN dpkg --purge --force-all git
+#RUN dpkg --purge --force-all perl 
 
 
 
