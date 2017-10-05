@@ -27,7 +27,7 @@ class BluemixCli(object):
         self.connected_region = region_api
         if region_api == API_DE:
             organization = 'CDO'
-        command_cf = 'cf login -a {} -u {} -p {} -o {} -s {}'.format(
+        command_cf = 'bx login -a {} -u {} -p {} -o {} -s {}'.format(
             region_api, self.bx_login, self.bx_password, organization, space)
         if self.__subprocess(command_cf)[0] != 0:
             raise IOError('cf connection error.')
@@ -45,7 +45,7 @@ class BluemixCli(object):
 
     def __get_orgs_list_current_region(self):
 
-        command_summary = "cf orgs"
+        command_summary = "bx cf orgs"
         return_code, out = self.__subprocess(command_summary)
         while return_code != 0:
             return_code, out = self.__subprocess(command_summary)
