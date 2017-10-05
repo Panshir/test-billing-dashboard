@@ -54,7 +54,7 @@ class BluemixCli(object):
 
     def get_orgs_list_by_date(self, report_date):
 
-        command_summary = "bx bss orgs-usage-summary -d %s --json" % (report_date)
+        command_summary = "bx billing orgs-usage-summary -d %s --json" % (report_date)
         return_code, out = self.__subprocess(command_summary)
         while return_code != 0:
             self.logger.debug('Getting organization list again for {}'.format(report_date))
@@ -65,13 +65,14 @@ class BluemixCli(object):
         org_list = list()
         if json_data["organizations"]:
             for org in json_data["organizations"]:
+                print 'for org ok' + str(org)
                 org_list.append(org["name"])
 
         self.logger.debug('organization list {}: {}'.format(report_date, org_list))
         return org_list
 
     def retrieve_records(self, org, report_date):
-        command_org = "bluemix bss org-usage %s --json -d %s" % (org, report_date)
+        command_org = "bx billing org-usage %s --json -d %s" % (org, report_date)
 
         return_code, out = self.__subprocess(command_org)
         cnt = 0
