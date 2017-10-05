@@ -68,6 +68,7 @@ class DBLoader(DBConnection, InterfaceBillingMod):
             self.bx_cli.cf_login(region_api)
             self.__load_current_region(beginning_date)
 
+        print "FINISH"
         self._cleaning()
 
         self.conn.commit()
